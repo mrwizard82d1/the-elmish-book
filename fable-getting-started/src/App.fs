@@ -11,6 +11,9 @@ let countView = document.getElementById("countView")
 // The model (state) of our application
 let mutable counter = 0
 
+// A random number generator
+let rnd = System.Random()
+
 let render = fun () ->
     // Update the view based on the model
     countView.innerText <- $"Count is at {counter}"
@@ -21,12 +24,12 @@ render ()
 // Attach event handlers to buttons
 incrementButton.onclick <- fun _eventArgs ->
     // Update the model...
-    counter <- counter + 1
+    counter <- counter + rnd.Next(5, 10)
     
     render ()
 
 decrementButton.onclick <- fun _eventArgs ->
     // Update the model 
-    counter <- counter - 1
+    counter <- counter - rnd.Next(5, 10)
     
     render ()
