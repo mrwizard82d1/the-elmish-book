@@ -1,3 +1,3 @@
 module App
 
-printfn "Hello from Fable"
+printfn "Fable is up and running..."
