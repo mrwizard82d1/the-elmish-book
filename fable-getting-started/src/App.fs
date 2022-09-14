@@ -1,14 +1,13 @@
 module App
 
+// Provides access from F# to the JavaScript Browse DOM API
 open Browser.Dom
 
-// Mutable variable to count the number of times we clicked the button
-let mutable count = 0
+// Locate the "printMsg" button in the DOM
+let printMsgButton = document.getElementById "printMsg"
 
-// Get a reference to our button and cast the Element to an HTMLButtonElement
-let myButton = document.querySelector(".my-button") :?> Browser.Types.HTMLButtonElement
+// Change (mutate) the `onClick` handler to print a message to the debug console when I press the
+// `printMsg` button.
+printMsgButton.onclick <- fun eventArgs ->
+    printfn "Button clicked"
 
-// Register our listener
-myButton.onclick <- fun _ ->
-    count <- count + 1
-    myButton.innerText <- sprintf "You clicked: %i time(s)" count
