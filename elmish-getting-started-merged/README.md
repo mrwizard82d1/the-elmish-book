@@ -1,6 +1,10 @@
-# Elmish Getting Started
+# Elmish Getting Started (Merged)
 
 This is a simple Fable application including an [Elmish](https://elmish.github.io/) counter. The repository is made for learning purposes and the generated Javascript output is not optimized. That said, the template shows you how easy it is to get started with Fable and Elmish using minimal configuration.
+
+I created this project by executing `dotnew feliz -n elmish-getting-started`. (I eventually renamed the repository to `elmish-getting-started-merged` to better reflect its "intent." After creating that skeleton project, I merged (some) of the code from the cloned project mentioned in "The Elmish Book."
+
+This project is "broke." That is, I see the "Increment" and "Decrement" buttons and the Count on the web page; however, pressing the "Increment" button has no effect on the web page. Further, I was unable to diagnose the issue. First, I was unable to locate the source for the original file in the browser source maps. Second, I could not seem to debug in Rider (but I did not try very hard). Finally, adding a print statement to the `update` function for the `Increment` message **did not** appear in the debug console.
 
 ## Feliz Template
 
