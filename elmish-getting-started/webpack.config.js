@@ -18,13 +18,13 @@ const isDevelopment = !isProduction && process.env.NODE_ENV !== 'production';
 var CONFIG = {
     // The tags to include the generated JS and CSS will be automatically injected in the HTML template
     // See https://github.com/jantimon/html-webpack-plugin
-    indexHtmlTemplate: "./src/index.html",
-    fsharpEntry: "./src/Main.fs.js",
+    indexHtmlTemplate: "./public/index.html",
+    fsharpEntry: "./src/App.fs.js",
     outputDir: "./dist",
     assetsDir: "./public",
     devServerPort: 8080,
     // When using webpack-dev-server, you may need to redirect some calls
-    // to a external API server. See https://webpack.js.org/configuration/dev-server/#devserver-proxy
+    // to an external API server. See https://webpack.js.org/configuration/dev-server/#devserver-proxy
     devServerProxy: {
         '/api/*': {
             // assuming the backend is running on port 5000
