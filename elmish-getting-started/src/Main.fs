@@ -27,28 +27,22 @@ let update (msg: Msg) (state: State): State =
         
 // The view function (called `render` to communicate with developers familiar with React)
 let render (state: State) (dispatch: Msg -> unit) =
-    // Illustrate conditional rendering using if-then-else
-    let headerText =
-        if state.Count % 2 = 0
-        then "Count is even"
-        else "Count is odd"
-        
-    let oddOrEvenMessage = Html.h1 headerText
-        
-    if state.Count < 0 then
-        // negative so do not render `oddOrEvenMessage`
-        Html.div [
-            Html.button [ prop.onClick (fun _ -> dispatch Increment); prop.text "+" ]
-            Html.div state.Count
-            Html.button [ prop.onClick (fun _ -> dispatch Decrement); prop.text "-" ]
+    let oddOrEvenMessage =
+        Html.h1 [
+            prop.style [
+                if state.Count <     0
+                then style.display.none
+                else style.display.block
+            ]
+            
+            prop.text (if state.Count % 2 = 0 then "Count is even" else "Count is odd")
         ]
-    else
-        // non-negative so **render** `oddOrEvenMessage`
-        Html.div [
-            Html.button [ prop.onClick (fun _ -> dispatch Increment); prop.text "+" ]
-            Html.div state.Count
-            Html.button [ prop.onClick (fun _ -> dispatch Decrement); prop.text "-" ]
-            oddOrEvenMessage
+        
+    Html.div [
+        Html.button [ prop.onClick (fun _ -> dispatch Increment); prop.text "+" ]
+        Html.div state.Count
+        Html.button [ prop.onClick (fun _ -> dispatch Decrement); prop.text "-" ]
+        oddOrEvenMessage
     ]
     
 Program.mkSimple init update render
