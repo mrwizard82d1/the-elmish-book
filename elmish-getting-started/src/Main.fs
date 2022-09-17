@@ -6,36 +6,36 @@ open Feliz
 
 // A simple counter
 type State =
-    { Count: int }
+    { TextInput: string }
     
 // Messages that cause state to change
 type Msg =
-    | Increment
-    | Decrement
+    | SetTextInput of string
     
 // Calculate the initial state of the application
 let init () =
-    { Count = 0 }
+    { TextInput = "" }
     
 // Update the state based on messages received
 let update (msg: Msg) (state: State): State =
     match msg with
-    | Increment ->
-        { state with Count = state.Count + 1 }
-    | Decrement ->
-        { state with Count = state.Count - 1 }
+    | SetTextInput toText ->
+        { state with TextInput = toText }
         
 // The view function (called `render` to communicate with developers familiar with React)
 let render (state: State) (dispatch: Msg -> unit) =
     Html.div [
-        Html.button [ prop.onClick (fun _ -> dispatch Increment); prop.text "+"
-                      prop.classes [ "button"; "is-primary" ] ]
-        Html.div state.Count
-        Html.button [ prop.onClick (fun _ -> dispatch Decrement); prop.text "-"
-                      prop.classes [ "button"; "is-primary" ] ]
-        Html.h1 [
-            prop.classes [ if state.Count < 0 then "is-hidden" ]
-            prop.text (if state.Count % 2 = 0 then "Count is even" else "Count is odd")
+        Html.input [
+            prop.className "has-background-primary"
+            prop.type' "text" // default value
+            prop.value state.TextInput
+            // Compose `SetTextInput` with `dispatch`. The composition results in invoking `SetTextInput` with
+            // the "to text" and invoking `dispatch` with the result of the `SetTextInput toText` function.
+            prop.onChange (SetTextInput >> dispatch)
+        ]
+        Html.span [
+            prop.className "has-background-success"
+            prop.text state.TextInput
         ]
     ]
     
