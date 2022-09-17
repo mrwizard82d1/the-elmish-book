@@ -28,11 +28,13 @@ let update (msg: Msg) (state: State): State =
 // The view function (called `render` to communicate with developers familiar with React)
 let render (state: State) (dispatch: Msg -> unit) =
     Html.div [
-        Html.button [ prop.onClick (fun _ -> dispatch Increment); prop.text "+" ]
+        Html.button [ prop.onClick (fun _ -> dispatch Increment); prop.text "+"
+                      prop.classes [ "button"; "is-primary" ] ]
         Html.div state.Count
-        Html.button [ prop.onClick (fun _ -> dispatch Decrement); prop.text "-" ]
+        Html.button [ prop.onClick (fun _ -> dispatch Decrement); prop.text "-"
+                      prop.classes [ "button"; "is-primary" ] ]
         Html.h1 [
-            prop.classes [ if state.Count < 0 then "hidden" ]
+            prop.classes [ if state.Count < 0 then "is-hidden" ]
             prop.text (if state.Count % 2 = 0 then "Count is even" else "Count is odd")
         ]
     ]
