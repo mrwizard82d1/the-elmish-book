@@ -6,36 +6,37 @@ open Feliz
 
 // A simple counter
 type State =
-    { TextInput: string }
+    { NumberInput: int }
     
 // Messages that cause state to change
 type Msg =
-    | SetTextInput of string
+    | SetNumberInput of int
     
 // Calculate the initial state of the application
 let init () =
-    { TextInput = "Enter some text to see it echoed" }
+    { NumberInput = 0 }
     
 // Update the state based on messages received
 let update (msg: Msg) (state: State): State =
     match msg with
-    | SetTextInput toText ->
-        { state with TextInput = toText }
+    | SetNumberInput toNumber ->
+        { state with NumberInput = toNumber }
         
 // The view function (called `render` to communicate with developers familiar with React)
 let render (state: State) (dispatch: Msg -> unit) =
     Html.div [
         Html.input [
             prop.className "has-background-primary"
-            prop.type' "text" // default value
-            prop.valueOrDefault state.TextInput
-            // Compose `SetTextInput` with `dispatch`. The composition results in invoking `SetTextInput` with
-            // the "to text" and invoking `dispatch` with the result of the `SetTextInput toText` function.
-            prop.onChange (SetTextInput >> dispatch)
+            prop.valueOrDefault state.NumberInput
+            prop.onChange (fun (value: string) ->
+                           value
+                           |> int
+                           |> SetNumberInput
+                           |> dispatch)
         ]
         Html.span [
             prop.className "has-background-success"
-            prop.text state.TextInput
+            prop.text (string state.NumberInput)
         ]
     ]
     
