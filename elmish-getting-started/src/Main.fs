@@ -14,7 +14,7 @@ type Msg =
     
 // Calculate the initial state of the application
 let init () =
-    { TextInput = "" }
+    { TextInput = "Enter some text to see it echoed" }
     
 // Update the state based on messages received
 let update (msg: Msg) (state: State): State =
@@ -28,7 +28,7 @@ let render (state: State) (dispatch: Msg -> unit) =
         Html.input [
             prop.className "has-background-primary"
             prop.type' "text" // default value
-            prop.value state.TextInput
+            prop.valueOrDefault state.TextInput
             // Compose `SetTextInput` with `dispatch`. The composition results in invoking `SetTextInput` with
             // the "to text" and invoking `dispatch` with the result of the `SetTextInput toText` function.
             prop.onChange (SetTextInput >> dispatch)
