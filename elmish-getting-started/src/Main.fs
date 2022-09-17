@@ -43,8 +43,8 @@ let update (msg: Msg) (state: State): State =
 
 let render _state _dispatch =
     Html.div [
-        prop.className "hidden"
-        prop.text "You cannot see me"
+        prop.className "shiny text-large"
+        prop.text "Large red text"
     ]
     
 Program.mkSimple init update render
