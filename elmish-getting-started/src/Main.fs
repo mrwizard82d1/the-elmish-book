@@ -25,26 +25,16 @@ let update (msg: Msg) (state: State): State =
     | Decrement ->
         { state with Count = state.Count - 1 }
         
-// // The view function (called `render` to communicate with developers familiar with React)
-// let render (state: State) (dispatch: Msg -> unit) =
-//     let headerText =
-//         if state.Count % 2 = 0
-//         then "Count is even"
-//         else "Count is odd"
-//         
-//     let oddOrEvenMessage = Html.h1 headerText
-//         
-//     Html.div [
-//         yield Html.button [ prop.onClick (fun _ -> dispatch Increment); prop.text "+" ]
-//         yield Html.div state.Count
-//         yield Html.button [ prop.onClick (fun _ -> dispatch Decrement); prop.text "-" ]
-//         if state.Count >= 0 then yield oddOrEvenMessage
-//     ]
-
-let render _state _dispatch =
+// The view function (called `render` to communicate with developers familiar with React)
+let render (state: State) (dispatch: Msg -> unit) =
     Html.div [
-        prop.className ["shiny"; "text-large"]
-        prop.text "Large red text"
+        Html.button [ prop.onClick (fun _ -> dispatch Increment); prop.text "+" ]
+        Html.div state.Count
+        Html.button [ prop.onClick (fun _ -> dispatch Decrement); prop.text "-" ]
+        Html.h1 [
+            prop.classes [ if state.Count < 0 then "hidden" ]
+            prop.text (if state.Count % 2 = 0 then "Count is even" else "Count is odd")
+        ]
     ]
     
 Program.mkSimple init update render
