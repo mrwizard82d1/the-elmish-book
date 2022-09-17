@@ -1,5 +1,6 @@
 module Main
 
+open System.ComponentModel
 open Elmish
 open Elmish.React
 open Feliz
@@ -22,6 +23,10 @@ let update (msg: Msg) (state: State): State =
     | SetNumberInput toNumber ->
         { state with NumberInput = toNumber }
         
+let tryParseInt (toParse: string): Option<int> =
+    try Some (int toParse)
+    with | _ -> None
+        
 // The view function (called `render` to communicate with developers familiar with React)
 let render (state: State) (dispatch: Msg -> unit) =
     Html.div [
@@ -30,9 +35,8 @@ let render (state: State) (dispatch: Msg -> unit) =
             prop.valueOrDefault state.NumberInput
             prop.onChange (fun (value: string) ->
                            value
-                           |> int
-                           |> SetNumberInput
-                           |> dispatch)
+                           |> tryParseInt
+                           |> Option.iter (SetNumberInput >> dispatch))
         ]
         Html.span [
             prop.className "has-background-success"
