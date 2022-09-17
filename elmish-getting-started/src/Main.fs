@@ -43,7 +43,7 @@ let update (msg: Msg) (state: State): State =
 
 let render _state _dispatch =
     Html.div [
-        prop.classes ["shiny"; "text-large"]
+        prop.className ["shiny"; "text-large"]
         prop.text "Large red text"
     ]
     
