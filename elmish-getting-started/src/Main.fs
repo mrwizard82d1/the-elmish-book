@@ -32,6 +32,7 @@ let render (state: State) (dispatch: Msg -> unit) =
     Html.div [
         Html.input [
             prop.className "has-background-primary"
+            prop.type'.number
             prop.valueOrDefault state.NumberInput
             prop.onChange (fun (value: string) ->
                            value
