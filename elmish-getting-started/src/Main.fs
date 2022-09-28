@@ -1,21 +1,21 @@
 module Main
 
-open System.ComponentModel
+open App
 open Elmish
 open Elmish.React
 open Feliz
 
-// A simple counter
+// Collecting user (numeric) input
 type State =
-    { NumberInput: int }
+    { NumberInput: Validated<int> }
     
 // Messages that cause state to change
 type Msg =
-    | SetNumberInput of int
+    | SetNumberInput of Validated<int>
     
 // Calculate the initial state of the application
 let init () =
-    { NumberInput = 0 }
+    { NumberInput = Validated.createEmpty() }
     
 // Update the state based on messages received
 let update (msg: Msg) (state: State): State =
@@ -23,25 +23,30 @@ let update (msg: Msg) (state: State): State =
     | SetNumberInput toNumber ->
         { state with NumberInput = toNumber }
         
-let tryParseInt (toParse: string): Option<int> =
-    try Some (int toParse)
-    with | _ -> None
+let tryParseInt (toParse: string): Validated<int> =
+    try Validated.success toParse (int toParse)
+    with | _ -> Validated.failure toParse
+    
+// Calculate text color based on Validated
+let validatedTextColor validated =
+    match validated.Parsed with
+    | Some _ -> color.green
+    | None -> color.red
         
 // The view function (called `render` to communicate with developers familiar with React)
-let render (state: State) (dispatch: Msg -> unit) =
+let render state dispatch =
     Html.div [
-        Html.input [
-            prop.className "has-background-primary"
-            prop.type'.number
-            prop.valueOrDefault state.NumberInput
-            prop.onChange (fun (value: string) ->
-                           value
-                           |> tryParseInt
-                           |> Option.iter (SetNumberInput >> dispatch))
-        ]
-        Html.span [
-            prop.className "has-background-success"
-            prop.text (string state.NumberInput)
+        prop.style [ style.padding 20 ]
+        prop.children [
+            Html.input [
+                prop.valueOrDefault state.NumberInput.Raw
+                prop.onChange (tryParseInt >> SetNumberInput >> dispatch)
+            ]
+            
+            Html.h1 [
+                prop.style [ style.color (validatedTextColor state.NumberInput) ]
+                prop.text state.NumberInput.Raw
+            ]
         ]
     ]
     
