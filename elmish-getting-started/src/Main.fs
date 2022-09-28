@@ -5,33 +5,28 @@ open Elmish
 open Elmish.React
 open Feliz
 
-// Collecting user (numeric) input
+// Collecting user (checkbox) input
 type State =
-    { NumberInput: Validated<int> }
+    { TextInput: string
+      Capitalized: bool }
     
 // Messages that cause state to change
 type Msg =
-    | SetNumberInput of Validated<int>
+    | SetTextInput of string
+    | SetCapitalized of bool
     
 // Calculate the initial state of the application
 let init () =
-    { NumberInput = Validated.createEmpty() }
+    { TextInput = ""; Capitalized = false }
     
 // Update the state based on messages received
 let update (msg: Msg) (state: State): State =
     match msg with
-    | SetNumberInput toNumber ->
-        { state with NumberInput = toNumber }
-        
-let tryParseInt (toParse: string): Validated<int> =
-    try Validated.success toParse (int toParse)
-    with | _ -> Validated.failure toParse
+    | SetTextInput text ->
+        { state with TextInput = text }
+    | SetCapitalized capitalized ->
+        { state with Capitalized = capitalized }
     
-// Calculate text color based on Validated
-let validatedTextColor validated =
-    match validated.Parsed with
-    | Some _ -> color.green
-    | None -> color.red
         
 // The view function (called `render` to communicate with developers familiar with React)
 let render state dispatch =
@@ -39,14 +34,30 @@ let render state dispatch =
         prop.style [ style.padding 20 ]
         prop.children [
             Html.input [
-                prop.valueOrDefault state.NumberInput.Raw
-                prop.onChange (tryParseInt >> SetNumberInput >> dispatch)
+                prop.valueOrDefault state.TextInput
+                prop.onChange (SetTextInput >> dispatch)
             ]
             
-            Html.h1 [
-                prop.style [ style.color (validatedTextColor state.NumberInput) ]
-                prop.text state.NumberInput.Raw
+            Html.div [
+                Html.label [
+                    prop.htmlFor "checkbox-capitalized"
+                    prop.text "Capitalized"
+                ]
+                
+                Html.input [
+                    prop.style [ style.margin 5 ]
+                    prop.id "checkbox-capitalized"
+                    prop.type'.checkbox
+                    prop.isChecked state.Capitalized
+                    prop.onChange (SetCapitalized >> dispatch)
+                ]
             ]
+            
+            Html.span (
+                if state.Capitalized
+                then state.TextInput .ToUpper()
+                else state.TextInput
+            )
         ]
     ]
     
