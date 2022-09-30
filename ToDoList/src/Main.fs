@@ -1,7 +1,7 @@
 module Main
 
 open Feliz
-open App
+open ToDoList
 open Browser.Dom
 open Fable.Core.JsInterop
 

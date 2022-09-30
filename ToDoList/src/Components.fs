@@ -1,4 +1,4 @@
-namespace App
+namespace ToDoList
 
 open Feliz
 open Feliz.Router

@@ -4,7 +4,7 @@ open Fable.Mocha
 
 let add x y = x + y
 
-let appTests = testList "App tests" [
+let appTests = testList "ToDoList tests" [
     testCase "add works" <| fun _ ->
         let result = add 2 3
         Expect.equal result 5 "Result must be 5"
