@@ -1,44 +1,36 @@
 namespace ToDoList
 
 open Feliz
-open Feliz.Router
 
-type Components =
-    /// <summary>
-    /// The simplest possible React component.
-    /// Shows a header with the text Hello World
-    /// </summary>
-    [<ReactComponent>]
-    static member HelloWorld() = Html.h1 "Hello World"
+type ToDo = string
 
-    /// <summary>
-    /// A stateful React component that maintains a counter
-    /// </summary>
-    [<ReactComponent>]
-    static member Counter() =
-        let (count, setCount) = React.useState(0)
-        Html.div [
-            Html.h1 count
-            Html.button [
-                prop.onClick (fun _ -> setCount(count + 1))
-                prop.text "Increment"
-            ]
-        ]
+type State = {
+    ToDoList: ToDo list
+    ToAdd: ToDo
+}
 
-    /// <summary>
-    /// A React component that uses Feliz.Router
-    /// to determine what to show based on the current URL
-    /// </summary>
-    [<ReactComponent>]
-    static member Router() =
-        let (currentUrl, updateUrl) = React.useState(Router.currentUrl())
-        React.router [
-            router.onUrlChanged updateUrl
-            router.children [
-                match currentUrl with
-                | [ ] -> Html.h1 "Index"
-                | [ "hello" ] -> Components.HelloWorld()
-                | [ "counter" ] -> Components.Counter()
-                | otherwise -> Html.h1 "Not found"
-            ]
-        ]
+type Msg =
+    | SetToAdd of ToDo
+    | AddItem
+    
+module ToDoList =
+
+   let init(): State = {
+       ToDoList = [ "Learn F#" ];
+       ToAdd = ""
+   }
+   
+   let update msg state =
+       match msg with
+       | SetToAdd toAddText -> {state with ToAdd = toAddText }
+       | ToAdd when state.ToAdd = "" -> state  // validation: return `state` unchanged when no `ToAdd`
+       | ToAdd -> {
+           ToAdd = ""  // Nothing to add when added
+           ToDoList = List.append state.ToDoList [state.ToAdd]
+       }
+       
+   let appTitle =
+       Html.h1 [
+           prop.className "title"
+           prop.text "Elmish To Do List"
+       ]
