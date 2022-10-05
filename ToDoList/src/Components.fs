@@ -11,12 +11,12 @@ type State = {
 
 type Msg =
     | SetToAdd of ToDo
-    | AddItem
+    | ToAdd
     
 module ToDoList =
 
    let init(): State = {
-       ToDoList = [ "Learn F#" ];
+       ToDoList = [ "Learn F#"; "Read Shakespeare" ];
        ToAdd = ""
    }
    
@@ -35,32 +35,44 @@ module ToDoList =
            prop.text "Elmish To Do List"
        ]
        
-   let toAdd (state: State) (dispatch: Msg -> unit) =
+   let render (state: State) (dispatch: Msg -> unit) =
        Html.div [
-           prop.classes [ "field"; "has-addons" ]
-           prop.children [
-               Html.div [
-                   prop.classes [ "control"; "is-expanded" ]
-                   prop.children [
-                       Html.input [
-                           prop.classes [ "input"; "is-medium" ]
-                           prop.valueOrDefault state.ToAdd
-                           prop.onChange (SetToAdd >> dispatch)
-                       ]
-                   ]
-               ]
-               
-               Html.div [
-                   prop.className "control"
-                   prop.children [
-                       Html.button [
-                           prop.classes [ "button"; "is-primary"; "is-medium" ]
-                           prop.onClick (fun _ -> dispatch AddItem)
-                           prop.children [
-                               Html.i [ prop.classes [ "fa"; "fa-plus" ] ]
-                           ]
-                       ]
-                   ]
-               ]
-           ]
+        prop.children [
+            appTitle
+            Html.div [
+                prop.classes [ "field"; "has-addons" ]
+                prop.children [
+                    Html.div [
+                        prop.classes [ "control"; "is-expanded" ]
+                        prop.children [
+                            Html.input [
+                                prop.classes [ "input"; "is-medium" ]
+                                prop.valueOrDefault state.ToAdd
+                                prop.onChange (SetToAdd >> dispatch)
+                            ]
+                        ]
+                    ]
+                    Html.div [
+                        prop.className "control"
+                        prop.children [
+                            Html.button [
+                                prop.classes [ "button"; "is-primary"; "is-medium" ]
+                                prop.onClick (fun _ -> dispatch ToAdd)
+                                prop.children [
+                                    Html.i [prop.classes [ "fa"; "fa-plus" ]]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+            Html.ul [
+                prop.children (state.ToDoList
+                               |> (List.map (fun t ->
+                                   Html.listItem [
+                                       prop.classes [ "is-primary" ]
+                                       prop.text t
+                                   ])))
+            ]
+        ]
        ]
