@@ -66,13 +66,18 @@ module ToDoList =
                     ]
                 ]
             ]
-            Html.ul [
-                prop.children (state.ToDoList
-                               |> (List.map (fun t ->
-                                   Html.listItem [
-                                       prop.classes [ "is-primary" ]
-                                       prop.text t
-                                   ])))
+            Html.div [
+                prop.classes [ "content"; "is-medium" ]
+                prop.children [
+                    Html.ul [
+                        prop.children (state.ToDoList
+                                       |> (List.map (fun t ->
+                                           Html.listItem [
+                                               prop.classes [ "is-primary" ]
+                                               prop.text t
+                                           ])))
+                    ]
+                ]
             ]
         ]
        ]
