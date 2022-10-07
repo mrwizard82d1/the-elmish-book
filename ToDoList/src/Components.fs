@@ -16,7 +16,7 @@ type Msg =
 module ToDoList =
 
    let init(): State = {
-       ToDoList = [ "Learn F#"; "Read Shakespeare" ];
+       ToDoList = [ "Learn F#" ];
        ToAdd = ""
    }
    
@@ -65,22 +65,19 @@ module ToDoList =
         ]
         
    let renderToDoItems (state: State) (dispatch: Msg -> unit) =
-        Html.div [
-            prop.classes [ "content"; "is-medium" ]
+        Html.ul [
             prop.children [
-                Html.ul [
-                    prop.children (state.ToDoList
-                                   |> (List.map (fun t ->
-                                       Html.listItem [
-                                           prop.classes [ "is-primary" ]
-                                           prop.text t
-                                       ])))
-                ]
+                for toDo in state.ToDoList ->
+                    Html.li [
+                        prop.classes [ "box"; "subtitle" ]
+                        prop.text toDo
+                    ]
             ]
         ]
        
    let render (state: State) (dispatch: Msg -> unit) =
        Html.div [
+        prop.style [ style.padding 20 ]
         prop.children [
             renderAppTitle
             renderToAdd state dispatch
