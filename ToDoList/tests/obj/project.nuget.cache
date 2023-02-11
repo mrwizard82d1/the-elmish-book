@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "cNA7rpcIWoUj3IB/33koZZfrTbfQve46sQ1sdJ8keIdLxtFWc9Q6XMAx01qkVGQSbzuZ588TW3XXrXWLmkH1yQ==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\larry.jones\\professional\\projects\\the-elmish-book\\ToDoList\\tests\\Tests.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\larry.jones\\.nuget\\packages\\fable.core\\3.0.0\\fable.core.3.0.0.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\fable.mocha\\2.9.1\\fable.mocha.2.9.1.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\fsharp.core\\6.0.5\\fsharp.core.6.0.5.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Project ToDoList is not compatible with net5.0 (.NETCoreApp,Version=v5.0). Project ToDoList supports: net6.0 (.NETCoreApp,Version=v6.0)",
+      "libraryId": "ToDoList",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "hnnUX08Y4xeZTHcHVFOSWhPYtg7XAZ4yVM5GUEygpbBEjlmFC33areXQW5XB9odXrRbBEAWFk6XHP9g4y69qzA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\larry.jones\\professional\\projects\\the-elmish-book\\fable-getting-started\\src\\App.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\larry.jones\\.nuget\\packages\\fable.browser.blob\\1.1.0\\fable.browser.blob.1.1.0.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\fable.browser.dom\\2.2.0\\fable.browser.dom.2.2.0.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\fable.browser.event\\1.2.1\\fable.browser.event.1.2.1.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\fable.browser.webstorage\\1.0.0\\fable.browser.webstorage.1.0.0.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\fable.core\\3.2.3\\fable.core.3.2.3.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\fsharp.core\\6.0.5\\fsharp.core.6.0.5.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

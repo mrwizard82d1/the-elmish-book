@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "pUeEIyqsR25AtmzL1YVVY+skpSCd8ACSYpH2pb2pcVkRnRpO2tDExY0LjqCvopLkTGXoyTktsc6HONvIVx5h4g==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\larry.jones\\professional\\projects\\the-elmish-book\\out-of-the-box\\tests\\Tests.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\larry.jones\\.nuget\\packages\\fable.core\\3.0.0\\fable.core.3.0.0.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\fable.mocha\\2.9.1\\fable.mocha.2.9.1.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\fsharp.core\\6.0.5\\fsharp.core.6.0.5.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Project App is not compatible with net5.0 (.NETCoreApp,Version=v5.0). Project App supports: net6.0 (.NETCoreApp,Version=v6.0)",
+      "libraryId": "App",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
+}

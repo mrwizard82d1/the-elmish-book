@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "dgSpecHash": "aWLA0YBBWnwNFKo8jiwj1KcEhDwJfNG08Q9n64WBLD5Avg/yGEEzRsWcOy4pTuzat+XrDpCkwjf9dcXvTy73hA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\larry.jones\\professional\\projects\\the-elmish-book\\out-of-the-box\\src\\App.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\larry.jones\\.nuget\\packages\\fable.ast\\3.0.0\\fable.ast.3.0.0.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\fable.browser.blob\\1.1.0\\fable.browser.blob.1.1.0.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\fable.browser.dom\\2.0.1\\fable.browser.dom.2.0.1.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\fable.browser.event\\1.2.1\\fable.browser.event.1.2.1.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\fable.browser.webstorage\\1.0.0\\fable.browser.webstorage.1.0.0.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\fable.core\\3.1.6\\fable.core.3.1.6.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\fable.datefunctions\\3.9.0\\fable.datefunctions.3.9.0.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\fable.elmish\\3.1.0\\fable.elmish.3.1.0.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\fable.react\\7.4.0\\fable.react.7.4.0.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\feliz\\1.66.0\\feliz.1.66.0.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\feliz.compilerplugins\\1.10.0\\feliz.compilerplugins.1.10.0.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\feliz.router\\3.8.0\\feliz.router.3.8.0.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\feliz.uselistener\\0.6.3\\feliz.uselistener.0.6.3.nupkg.sha512",
+    "C:\\Users\\larry.jones\\.nuget\\packages\\fsharp.core\\6.0.5\\fsharp.core.6.0.5.nupkg.sha512"
+  ],
+  "logs": []
+}
